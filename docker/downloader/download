@@ -17,7 +17,7 @@ INTERNAL_REPO=https://maven.forgerock.org/repo/internal-releases/org/forgerock
 PRIVATE_REPO=https://maven.forgerock.org/repo/private-releases/org/forgerock
 
 # Default to private (release) repo
-REPO=$INTERNAL_REPO
+REPO=$PRIVATE_REPO
 
 # Pass this in via the environment to use a GCS cache for the artifacts. You must have RW access to this bucket
 #GCS_DIR=gs://forgeops-cache
@@ -28,7 +28,7 @@ then
     exit 1
 fi
 
-# Update major versions / snapshots here. 
+# Update major versions / snapshots here.
 
 # Download a binary specified by $1
 dl_binary() {
@@ -44,7 +44,7 @@ dl_binary() {
     openidm)
         dl $IDM_REPO $IDM_ZIP openidm.zip
         ;;
-   openig)      
+   openig)
         dl $IG_REPO $IG_WAR openig.war
         ;;
     opendj)
@@ -56,7 +56,7 @@ dl_binary() {
     apache-agent)
         dl $WEB_AGENTS_STABLE_REPO $APACHE_AGENT_ZIP apache-agent.zip
         ;;
-    *) 
+    *)
         echo "Invalid image to downoad $1"
         exit 1
     esac
@@ -64,9 +64,9 @@ dl_binary() {
 
 # Do the actual download. $1 - REPO ,  $2 - artifact name, $3 destination
 dl(){
-   
+
     src="$1/$2"
-  
+
     echo "Downloading $src to $3"
 
 
@@ -77,8 +77,8 @@ dl(){
         wget -q --inet4-only --timeout=20 --header "$HEADER" -O $3 $src
     fi
 
-    if [ $? -ne 0 ] 
-    then 
+    if [ $? -ne 0 ]
+    then
         echo "Download failed"
         exit 1
     fi
@@ -88,7 +88,7 @@ while getopts "Iwv:" opt; do
   case ${opt} in
     I ) REPO=$INTERNAL_REPO ;;
     w ) WGET="true" ;;
-    v ) VERSION="${OPTARG}" 
+    v ) VERSION="${OPTARG}"
         echo $VERSION | grep SNAPSHOT \
                 && REPO="https://maven.forgerock.org/repo/internal-snapshots/org/forgerock"
                 SNAPSHOT="true"
