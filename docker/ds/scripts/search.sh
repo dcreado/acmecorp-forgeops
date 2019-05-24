@@ -8,7 +8,7 @@ SSL_KEYSTORE=${PROXY}/secrets/ssl-keystore.p12
 KEYSTORE_PIN=$SHARED/keystore.pin
 
 $PROXY/bin/ldapsearch \
-        --hostname ${3}${4}.example.com  \
+        --hostname ${3}${4}.acmecorp.com  \
         --port ${4}389 \
         --useStartTLS \
         --saslOption mech="EXTERNAL"  \

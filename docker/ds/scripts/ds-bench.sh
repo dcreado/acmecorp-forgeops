@@ -10,7 +10,7 @@ PW_FILE="${DIR_MANAGER_PW_FILE:-/var/tmp/.passwd}"
 
 export OPENDJ_JAVA_ARGS="-Xmx512m"
 
-if [ ! -r ${PW_FILE} ] 
+if [ ! -r ${PW_FILE} ]
 then
 	#echo "No file found...creating one"
     echo -n "password" > "/var/tmp/.passwd"
@@ -72,7 +72,7 @@ echo "Generating userstore template..."
 
 cat >/tmp/userstore.template  <<EOF
 define suffix=$BASE_DN
-define maildomain=example.com
+define maildomain=acmecorp.com
 
 branch: [suffix]
 
@@ -123,7 +123,7 @@ coreTokenId: <random:hex:13>_<random:hex:3>_<random:hex:8>
 objectClass: top
 objectClass: frCoreToken
 coreTokenString09: clientOIDC_0
-coreTokenObject: \[\{"g":"{coreTokenId}.<random:hex:27>","_s":["openid"],"r":"{coreTokenId}.<random:hex:27>","rx":"1522747004911","rgt":"authorization_code","rtt":"Bearer","rtn":"refresh_token","rati":"<random:hex:8>-<random:hex:4>-<random:hex:4>-<random:hex:4>-<random:hex:12>-<random:hex:4>","_at":1522157123,"_al":0,"_u":"http://example.com","_am":"DataStore","_acr":"0","gt":\[\]\}\]
+coreTokenObject: \[\{"g":"{coreTokenId}.<random:hex:27>","_s":["openid"],"r":"{coreTokenId}.<random:hex:27>","rx":"1522747004911","rgt":"authorization_code","rtt":"Bearer","rtn":"refresh_token","rati":"<random:hex:8>-<random:hex:4>-<random:hex:4>-<random:hex:4>-<random:hex:12>-<random:hex:4>","_at":1522157123,"_al":0,"_u":"http://acmecorp.com","_am":"DataStore","_acr":"0","gt":\[\]\}\]
 coreTokenExpirationDate: 20180328112709.803+0100
 coreTokenType: OAUTH2_GRANT_SET
 coreTokenString08: myrealm
@@ -136,7 +136,7 @@ EOF
 add() {
 
     TEMPLATE="/tmp/userstore.template"
-    
+
     if [ -z "$1" ]; then
         genusertemplate
     elif [ "$1" == "cts" ]; then
@@ -181,7 +181,7 @@ case "$1" in
 
       mod|modify)
      	mod
-      	;; 
+      	;;
 
       auth|authn)
       	auth

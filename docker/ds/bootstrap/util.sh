@@ -9,7 +9,7 @@ SHARED=$PWD/shared
 # KEYSTORE_PIN=$SHARED/keystore.pin
 
 SSL_CERT_ALIAS=opendj-ssl
-SSL_CERT_CN="CN=*.example.com,O=OpenDJ SSL"
+SSL_CERT_CN="CN=*.acmecorp.com,O=OpenDJ SSL"
 CA_CERT_ALIAS=opendj-ca
 
 PREFIX=${1}
@@ -19,7 +19,7 @@ SERVER_ID=${2}
 WORKDIR=/var/tmp/ds
 
 DJ=run/${1}${2}
-DSHOST="${1}${2}.example.com"
+DSHOST="${1}${2}.acmecorp.com"
 
 #SECRETS=$DJ/secrets
 SECRETS=/var/run/secrets/opendj
@@ -112,7 +112,7 @@ objectClass: top
 objectClass: applicationProcess
 objectClass: ds-certificate-user
 cn: OpenDJ
-ds-certificate-subject-dn: CN=*.example.com,O=OpenDJ SSL
+ds-certificate-subject-dn: CN=*.acmecorp.com,O=OpenDJ SSL
 ds-privilege-name: config-read
 ds-privilege-name: proxied-auth
 EOF

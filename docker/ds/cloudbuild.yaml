@@ -13,8 +13,8 @@ steps:
           '--network=host',
           '-t', 'gcr.io/$PROJECT_ID/ds:test', '.',
           # seems to have no impact..
-          # '--add-host', 'dsrs1.example.com:127.0.0.1', 
-          # '--add-host', 'dsrs2.example.com:127.0.0.1',
+          # '--add-host', 'dsrs1.acmecorp.com:127.0.0.1', 
+          # '--add-host', 'dsrs2.acmecorp.com:127.0.0.1',
           #'-m', '4g'
           #'--ulimit', 'nofile=1024'
         ]

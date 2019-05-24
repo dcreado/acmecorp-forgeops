@@ -2,7 +2,7 @@
 
 
 # Add hostnames to the docker containers /etc/hosts - needed only for building.
-echo "127.0.0.1 dsrs1.example.com dsrs2.example.com" >>/etc/hosts
+echo "127.0.0.1 dsrs1.acmecorp.com dsrs2.acmecorp.com" >>/etc/hosts
 
 echo "##### Cleaning servers..."
 ./clean-all.sh
@@ -35,9 +35,9 @@ if [ -n "$CONFIG_REPLICATION" ]; then
         --baseDn ou=identities \
         --baseDn ou=tokens \
         --baseDn ou=am-config \
-        --baseDn dc=openidm,dc=example,dc=com \
-        --host1 dsrs1.example.com --port1 1444 --replicationPort1 1989 \
-        --host2 dsrs2.example.com --port2 2444 --replicationPort2 2989 \
+        --baseDn dc=openidm,dc=acmecorp,dc=com \
+        --host1 dsrs1.acmecorp.com --port1 1444 --replicationPort1 1989 \
+        --host2 dsrs2.acmecorp.com --port2 2444 --replicationPort2 2989 \
         --no-prompt
 
     echo "##### Initializing replication between DSRS 1 and DSRS 2..."
@@ -46,8 +46,8 @@ if [ -n "$CONFIG_REPLICATION" ]; then
         --baseDn ou=identities \
         --baseDn ou=tokens \
         --baseDn ou=am-config \
-        --baseDn dc=openidm,dc=example,dc=com \
-        --hostname dsrs1.example.com --port 1444 \
+        --baseDn dc=openidm,dc=acmecorp,dc=com \
+        --hostname dsrs1.acmecorp.com --port 1444 \
         --no-prompt
 
     ./stop-all.sh 

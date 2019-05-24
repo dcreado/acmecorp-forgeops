@@ -17,7 +17,7 @@ echo "Making $USERS sample users"
 
 cat <<EOF >/var/tmp/template
 define suffix=$BASE_DN
-define maildomain=example.com
+define maildomain=acmecorp.com
 define numusers=$USERS
 
 branch: [suffix]

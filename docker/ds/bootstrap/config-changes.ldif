@@ -61,7 +61,7 @@ ds-cfg-replication-server: &{rs.servers}
 
 
 # Replication idmRepo - TODO The idm repo needs stable DN
-dn: cn=dc=openidm\,dc=example\,dc=com,cn=domains,cn=Multimaster Synchronization,cn=Synchronization Providers,cn=config
+dn: cn=dc=openidm\,dc=acmecorp\,dc=com,cn=domains,cn=Multimaster Synchronization,cn=Synchronization Providers,cn=config
 changetype: modify
 replace: ds-cfg-enabled
 ds-cfg-enabled: &{ds.enable.idmrepo|true}

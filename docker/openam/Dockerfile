@@ -2,10 +2,10 @@
 #
 # Copyright (c) 2016-2018 ForgeRock AS.
 #
-FROM forgerock/downloader 
+FROM acmecorp/downloader 
 
 ARG VERSION="6.5.1"
-RUN download -v $VERSION openam 
+RUN download -v $VERSION openam
 RUN mkdir -p /var/tmp/openam && unzip -q /openam.war -d /var/tmp/openam
 
 FROM tomcat:8.5-alpine
@@ -27,7 +27,7 @@ COPY --from=0 /var/tmp/openam "$CATALINA_HOME"/webapps/ROOT
 
 # This option:
 #  -Dorg.apache.tomcat.util.buf.UDecoder.ALLOW_ENCODED_SLASH=true \
-# is disabled to avoid http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-0450 
+# is disabled to avoid http://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2007-0450
 # This may impact amster imports for some configurations (SAML entities)
 # If you need to renable this for amster, it should be disabled after the import is complete
 

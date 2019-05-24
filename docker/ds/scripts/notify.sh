@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Send a notification message. This example uses Slack, but you can replace this
+# Send a notification message. This acmecorp uses Slack, but you can replace this
 # with other notification methods.
 
 
