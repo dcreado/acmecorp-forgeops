@@ -7,6 +7,7 @@ node {
         docker.build('acmecorp/opendj:1.0.0', 'docker/ds/').push()
         docker.build('acmecorp/openidm:1.0.0', 'docker/openidm/').push()
         docker.build('acmecorp/openam:1.0.0', 'docker/openam/').push()
+        docker.build('acmecorp/java:1.0.0', 'docker/java/').push()
         docker.build('acmecorp/amster:1.0.0', 'docker/amster/').push()
         docker.build('acmecorp/util:1.0.0', 'docker/util/').push()
         docker.build('acmecorp/git:1.0.0', 'docker/git/').push()
