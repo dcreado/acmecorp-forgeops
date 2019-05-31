@@ -5,19 +5,19 @@
 component: openam
 
 image:
-  repository: gcr.io/forgerock-io/openam
-  tag: 6.5.1
+  repository: forgerockcontainer1.azurecr.io/acmecorp/openam
+  tag: 1.0.0
   # For development we set this to Always to get the most current image:
   pullPolicy: IfNotPresent
 
 gitImage:
-  repository: gcr.io/forgerock-io/git
-  tag: 6.5.1
+  repository: forgerockcontainer1.azurecr.io/acmecorp/git
+  tag: 1.0.0
   pullPolicy: IfNotPresent
 
 utilImage:
-  repository: gcr.io/forgerock-io/util
-  tag: 6.5.1
+  repository: forgerockcontainer1.azurecr.io/acmecorp/util
+  tag: 1.0.0
   pullPolicy: IfNotPresent
 
 domain: .example.com
@@ -83,10 +83,10 @@ amCustomizationScriptPath: "customize-am.sh"
 livenessPeriod: 60
 livenessTimeout: 15
 
-# If useDefaultSecrets is set to true (the default), the secret values in templates/secrets will be used 
-# to create the secrets openam-keys and openam-keystore-passwords. If you set useDefaultSecrets to false, 
-# you must create these secrets yourself. This allows you to inject your own secrets rather than use the 
-# default ones bundled in the chart. An alternate strategy is to fork this chart and replace the secrets 
+# If useDefaultSecrets is set to true (the default), the secret values in templates/secrets will be used
+# to create the secrets openam-keys and openam-keystore-passwords. If you set useDefaultSecrets to false,
+# you must create these secrets yourself. This allows you to inject your own secrets rather than use the
+# default ones bundled in the chart. An alternate strategy is to fork this chart and replace the secrets
 # in templates/secrets with your own.
 useDefaultSecrets: true
 

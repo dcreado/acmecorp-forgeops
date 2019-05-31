@@ -5,7 +5,7 @@
 replicaCount: 1
 
 # Top level domain. Used to create the ingress
-domain: .example.com
+domain: .acmecorp.com
 
 # Configuration parameters. Common to all charts that require configuration from a
 # source. Currently the only source is a git repo.
@@ -32,15 +32,15 @@ secret:
 component: openidm
 
 image:
-  repository: gcr.io/forgerock-io/openidm
-  tag: 6.5.1
+  repository: forgerockcontainer1.azurecr.io/acmecorp/openidm
+  tag: 1.0.0
   pullPolicy: IfNotPresent
   # For development use Always
   # pullPolicy: Always
 
 gitImage:
-  repository: gcr.io/forgerock-io/git
-  tag: 6.5.1
+  repository: forgerockcontainer1.azurecr.io/acmecorp/git
+  tag: 1.0.0
   pullPolicy: IfNotPresent
 
 # override Java JVM options.

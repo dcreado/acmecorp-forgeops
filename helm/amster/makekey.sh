@@ -4,7 +4,7 @@
 # The key alias is not significant to Amster - as long as the private key and authorizedkey (public) match
 # up, the alias can be anything.
 # added -m PEM because ssh-keygen on mac doesn't create PEM format by default.
-ssh-keygen -t rsa -b 4096 -m PEM -C "openam-install@example.com" -f secrets/id_rsa
+ssh-keygen -t rsa -b 4096 -m PEM -C "openam-install@acmecorp.com" -f secrets/id_rsa
 
 # This is just copied as amster also requires a copy of the authorized_keys
 cp secrets/id_rsa.pub ../openam/secrets/authorized_keys

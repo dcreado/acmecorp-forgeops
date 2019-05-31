@@ -1,0 +1,22 @@
+# Copyright (c) 2016-2017 ForgeRock AS. Use of this source code is subject to the
+# Common Development and Distribution License (CDDL) that can be found in the LICENSE file
+{{ if .Values.lbexposed }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.instance }}-lb
+  labels:
+    app: {{ .Values.instance }}
+    component: {{ .Values.component }}
+    vendor: forgerock
+    heritage: {{ .Release.Service }}
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 1636
+      name: ldaps
+      targetPort: 163
+  selector:
+    app: {{ template "fullname" . }}
+    release: {{ .Release.Name }}
+{{ end }}
