@@ -1,7 +1,7 @@
 {{ if .Values.backup.verify }}
 # This is a WIP.
 # TODO: This needs to be refactored to support verification across many ds instance backups
-# It previously had a 1-1 relationship between the instance and the backup, now it is 1-N 
+# It previously had a 1-1 relationship between the instance and the backup, now it is 1-N
 #
 # This is an optional cron job that restores from a backup and verifies the integrity of the data.
 # To create an ad hoc job you can use:
@@ -26,10 +26,10 @@ spec:
           # This will make sure the mounted PVCs are writable by the forgerock user with gid 111111.
           securityContext:
 {{ toYaml .Values.securityContext | indent 8 }}
-          restartPolicy: Never      
+          restartPolicy: Never
           containers:
           - name: opendj
-            image:  {{ .Values.image.repository }}:{{ .Values.image.tag }}
+            image:  {{ .Values.image.repository }}:{{ .Values.image.tag }}-{{ $.Chart.AppVersion }}
             imagePullPolicy: {{ .Values.image.pullPolicy }}
             envFrom:
             - configMapRef:
@@ -53,7 +53,7 @@ spec:
           #   secret:
           #     secretName: {{ .Values.instance }}
           - name: backup
-            persistentVolumeClaim: 
+            persistentVolumeClaim:
               claimName: {{ .Values.backup.pvcName }}
           - name: db
             persistentVolumeClaim:

@@ -34,7 +34,7 @@ tls:
 {{- define "git-init" -}}
 {{ if eq .Values.config.strategy "git" }}
 - name: git-init
-  image: {{ .Values.gitImage.repository }}:{{ .Values.gitImage.tag }}
+  image: {{ .Values.gitImage.repository }}:{{ .Values.gitImage.tag }}-{{ $.Chart.AppVersion }}
   imagePullPolicy: {{ .Values.gitImage.pullPolicy }}
   volumeMounts:
   - name: git
@@ -54,7 +54,7 @@ tls:
 {{- define "git-sync" -}}
 {{ if eq .Values.config.strategy "git" }}
 - name: git
-  image: {{ .Values.gitImage.repository }}:{{ .Values.gitImage.tag }}
+  image: {{ .Values.gitImage.repository }}:{{ .Values.gitImage.tag }}-{{ $.Chart.AppVersion }}
   imagePullPolicy: {{ .Values.gitImage.pullPolicy }}
   volumeMounts:
   - name: git

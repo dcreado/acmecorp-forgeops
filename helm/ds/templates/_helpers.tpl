@@ -10,7 +10,7 @@ Expand the name of the chart.
 
 {{/* work in progress. TODO reduce dj image boilerplate */}}
 {{define "dscontainer"}}
-image:  {{ .Values.image.repository }}:{{ .Values.image.tag }}
+image:  {{ .Values.image.repository }}:{{ .Values.image.tag }}-{{ $.Chart.AppVersion }}
 imagePullPolicy: {{ .Values.image.pullPolicy }}
 volumeMounts:
 - name: dj-secrets

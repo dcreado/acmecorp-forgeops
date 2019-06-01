@@ -69,7 +69,7 @@ spec:
       {{ if .Values.restore.enabled }}
       initContainers:
       - name: restore
-        image:  {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        image:  {{ .Values.image.repository }}:{{ .Values.image.tag }}-{{ $.Chart.AppVersion }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         volumeMounts:
         - name: db
@@ -90,7 +90,7 @@ spec:
       {{- end }}
       containers:
       - name: ds
-        image:  {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        image:  {{ .Values.image.repository }}:{{ .Values.image.tag }}-{{ $.Chart.AppVersion }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         #terminationGracePeriodSeconds: 10
         {{- if eq .Values.instance "ctsstore" }}

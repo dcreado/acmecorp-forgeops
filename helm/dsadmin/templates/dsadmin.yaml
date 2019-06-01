@@ -1,4 +1,4 @@
-# This is a small "admin" pod that just pauses and waits for 
+# This is a small "admin" pod that just pauses and waits for
 # someone to exec into the image. Used for debugging, kicking off remote tasks, etc..
 apiVersion: apps/v1
 kind: Deployment
@@ -12,7 +12,7 @@ spec:
     matchLabels:
       app: dsadmin
   template:
-    metadata: 
+    metadata:
       labels:
         app: dsadmin
     spec:
@@ -29,7 +29,7 @@ spec:
           mountPath: /bak
       containers:
       - name: opendj
-        image:  {{ .Values.image.repository }}:{{ .Values.image.tag }}
+        image:  {{ .Values.image.repository }}:{{ .Values.image.tag }}-{{ $.Chart.AppVersion }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         # envFrom:
         # - configMapRef:
@@ -57,7 +57,7 @@ spec:
       - name: backup
         persistentVolumeClaim:
           claimName: "{{ .Values.backup.pvcName }}"
-      # There is a single dsadmin instance for all ds servers - so we don't mount any secret for the 
+      # There is a single dsadmin instance for all ds servers - so we don't mount any secret for the
       # directory manager password. TOOD: We can revist this.
       # volumes:
       #   - name: dj-secrets
