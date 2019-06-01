@@ -1,10 +1,9 @@
 pipeline {
-
+  agent { node { label 'master'}}
   stages {
     stage('git clone and building images and templates'){
-
-    checkout scm
-
+      steps {
+      checkout scm
     withCredentials([string(credentialsId: '0da3edbb-7716-449d-973a-6714e6bce8b7', variable: 'API_KEY')]){
        docker.withRegistry('https://forgerockcontainer1.azurecr.io', 'b0cf778a-c523-4655-bf5c-b2a05aa3934e') {
           docker.build('acmecorp/downloader:latest', '--build-arg API_KEY=$API_KEY docker/downloader/').push()
@@ -22,6 +21,7 @@ pipeline {
           }
         }
       }
+    }
     }
   }
 }
