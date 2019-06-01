@@ -13,7 +13,7 @@ node {
         docker.build('acmecorp/git:1.0.0', 'docker/git/').push()
 
         withCredentials([usernamePassword(credentialsId: 'azurecreds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-          sh 'az login -u $USERNAME' -p $PASSWORD'
+          sh 'az login -u $USERNAME -p $PASSWORD'
           sh 'helm/pack_push.sh'
         }
 
