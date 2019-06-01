@@ -1,5 +1,7 @@
 for i in frconfig ds dsadmin openam amster openidm postgres-openidm openig forgerock-metrics gatling-benchmark web end-user-ui
-helm package --app-version $1 $i
+do
+   helm package --app-version $1 $i
+done
 for i in *.tgz
 do
    echo $i
