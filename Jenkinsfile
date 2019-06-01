@@ -14,7 +14,7 @@ node {
 
         withCredentials([usernamePassword(credentialsId: 'azurecreds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
           sh 'az login -u $USERNAME -p $PASSWORD'
-          sh 'helm/pack_push.sh'
+          sh 'cd helm && ./pack_push.sh ${env.BUILD_NUMBER}'
         }
 
      }
