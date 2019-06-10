@@ -92,6 +92,8 @@ spec:
           mountPath: /var/run/secrets/openam/keystore
         - name: openam-keystore-passwords
           mountPath: /var/run/secrets/openam/password
+        - name: truststore
+          mountPath: /var/run/secrets/truststore
         {{ if eq .Values.config.strategy  "git" }}
         - name: git
           mountPath: /git
@@ -164,6 +166,9 @@ spec:
         secret:
           secretName: configstore
           #defaultMode: 256
+      - name: truststore
+        secret:
+          secretName: truststore
       {{ if eq .Values.config.strategy  "git" }}
       - name: git
         emptyDir: {}
