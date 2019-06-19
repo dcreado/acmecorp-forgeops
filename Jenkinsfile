@@ -2,7 +2,8 @@ pipeline {
   agent { node { label 'master'}}
 
   environment {
-    VERSION = "1.0.0-${BUILD_NUMBER}"
+    MAJOR_VERSION = "1.0.0"
+    VERSION = "${MAJOR_VERSION}-${BUILD_NUMBER}"
   }
 
   stages {
@@ -15,25 +16,25 @@ pipeline {
               docker.build('acmecorp/downloader:latest', '--build-arg API_KEY=$API_KEY docker/downloader/').push()
               def dsImage = docker.build('acmecorp/ds:${VERSION}', 'docker/ds/')
               dsImage.push()
-              dsImage.push('latest')
+              dsImage.push('${MAJOR_VERSION}-latest')
               def idmImage = docker.build('acmecorp/openidm:${VERSION}', 'docker/openidm/')
               idmImage.push()
-              idmImage.push('latest')
+              idmImage.push('${MAJOR_VERSION}-latest')
               def amImage = docker.build('acmecorp/openam:${VERSION}', 'docker/openam/')
               amImage.push()
-              amImage.push('latest')
+              amImage.push('l${MAJOR_VERSION}-atest')
               def javaImage = docker.build('acmecorp/java:${VERSION}', 'docker/java/')
               javaImage.push()
-              javaImage.push('latest')
+              javaImage.push('${MAJOR_VERSION}-latest')
               def amsterImage = docker.build('acmecorp/amster:${VERSION}', 'docker/amster/')
               amsterImage.push()
-              amsterImage.push('latest')
+              amsterImage.push('${MAJOR_VERSION}-latest')
               def utilImage = docker.build('acmecorp/util:${VERSION}', 'docker/util/')
               utilImage.push()
-              utilImage.push('latest')
+              utilImage.push('${MAJOR_VERSION}-latest')
               def gitImage = docker.build('acmecorp/git:${VERSION}', 'docker/git/')
               gitImage.push()
-              gitImage.push('latest')
+              gitImage.push('${MAJOR_VERSION}-latest')
 
               withCredentials([usernamePassword(credentialsId: 'azurecreds', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 sh 'az login -u $USERNAME -p $PASSWORD'
