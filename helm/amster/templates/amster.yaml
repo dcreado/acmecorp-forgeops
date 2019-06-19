@@ -41,7 +41,7 @@ spec:
       {{- end }}
       containers:
       - name: amster
-        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}-{{ $.Chart.AppVersion }}
+        image: {{ .Values.image.repository }}:{{ .Values.image.tag }}-{{ $.Chart.AppVersion | default "latest"  }}
         imagePullPolicy: {{  .Values.image.pullPolicy }}
         envFrom:
         - configMapRef:
@@ -72,7 +72,7 @@ spec:
 {{ toYaml .Values.resources | indent 12 }}
       {{ if eq .Values.config.strategy "git" -}}
       - name: git
-        image: {{ .Values.gitImage.repository }}:{{ .Values.gitImage.tag }}-{{ $.Chart.AppVersion }}
+        image: {{ .Values.gitImage.repository }}:{{ .Values.gitImage.tag }}-{{ $.Chart.AppVersion | default "latest"  }}
         imagePullPolicy: {{ .Values.gitImage.pullPolicy }}
         volumeMounts:
         - name: git

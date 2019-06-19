@@ -22,7 +22,7 @@ pipeline {
               idmImage.push('${MAJOR_VERSION}-latest')
               def amImage = docker.build('acmecorp/openam:${VERSION}', 'docker/openam/')
               amImage.push()
-              amImage.push('l${MAJOR_VERSION}-atest')
+              amImage.push('${MAJOR_VERSION}-latest')
               def javaImage = docker.build('acmecorp/java:${VERSION}', 'docker/java/')
               javaImage.push()
               javaImage.push('${MAJOR_VERSION}-latest')
