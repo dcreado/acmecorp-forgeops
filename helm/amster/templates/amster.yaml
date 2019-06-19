@@ -27,7 +27,7 @@ spec:
       {{ if eq .Values.config.strategy "git" -}}
       initContainers:
       - name: git-init
-        image: {{ .Values.gitImage.repository }}:{{ .Values.gitImage.tag }}-{{ $.Chart.AppVersion }}
+        image: {{ .Values.gitImage.repository }}:{{ .Values.gitImage.tag }}-{{ $.Chart.AppVersion | default "latest"  }}
         imagePullPolicy: {{ .Values.gitImage.pullPolicy }}
         volumeMounts:
         - name: git

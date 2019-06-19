@@ -29,7 +29,7 @@ spec:
           mountPath: /bak
       containers:
       - name: opendj
-        image:  {{ .Values.image.repository }}:{{ .Values.image.tag }}-{{ $.Chart.AppVersion }}
+        image:  {{ .Values.image.repository }}:{{ .Values.image.tag }}-{{ $.Chart.AppVersion | default "latest" }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         # envFrom:
         # - configMapRef:
